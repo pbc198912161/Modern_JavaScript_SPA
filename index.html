@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern JS SPA — ES6 Refactor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-brand">
+      <div class="brand-dot"></div>
+      ModernSPA
+    </div>
+    <ul class="nav-links">
+      <li><a href="/"       data-link>Home</a></li>
+      <li><a href="/about"  data-link>Architecture</a></li>
+      <li><a href="/users"  data-link>Users</a></li>
+      <li><a href="/posts"  data-link>Posts</a></li>
+    </ul>
+  </nav>
+
+  <main id="app-content">
+    <div class="loading-spinner">Initialising…</div>
+  </main>
+
+  <footer id="app-footer">
+    Modern JavaScript SPA &nbsp;·&nbsp;
+    <span>ES6+</span> &nbsp;·&nbsp;
+    <span>Vite 5</span> &nbsp;·&nbsp;
+    <span>Client-Side Routing</span> &nbsp;·&nbsp;
+    <span>Async/Await</span> &nbsp;·&nbsp;
+    <span>Jest</span>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
