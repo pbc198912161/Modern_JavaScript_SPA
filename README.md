@@ -1,109 +1,56 @@
-# ⚡ Modern JavaScript SPA
+Modern JavaScript SPA
+This is a frontend development project where I took a plain old vanilla JavaScript app and refactored it into a proper modern Single Page Application. The goal was to learn how real-world JS projects are structured — with modules, routing, async data fetching, testing, and a build tool.
 
-A fully refactored vanilla JS Single Page Application built with ES6 modules,
-client-side routing, async/await data fetching, Jest unit tests, and Vite.
 
----
+What This Project Does
+The app loads data from a public API (JSONPlaceholder) and displays users and their posts. You can navigate between pages without any full page reload — it feels like a real app. Everything is built with plain JavaScript, no React or Vue involved.
 
-## 📁 Directory Structure
 
-```
+What I Learned Building This
+ES6 Modules — Instead of dumping everything into one giant script file, the code is split into separate files. Each file handles one thing — routing, API calls, utility functions, or a single page. They talk to each other using import and export.
+Client-Side Routing — When you click a link, the browser doesn't reload the page. Instead, JavaScript catches that click, updates the URL using the History API, and swaps only the content area. I built this router from scratch using a Router class.
+Async / Await — All the data fetching uses async/await instead of messy .then() chains. I also added proper error handling so the app doesn't just crash if the network is slow or something fails. There's even a timeout after 8 seconds and an automatic retry if the first request fails.
+Jest Unit Tests — The utility functions (things like truncate, escapeHtml, getInitials) are all tested using Jest. There are 19 tests total. You can run them anytime and see them all pass.
+Vite — This is the build tool. It starts a super fast dev server while you're coding and can bundle everything into optimised files ready for deployment.
+
+
+Folder Structure
 modern-spa/
-│
-├── index.html              ← Single HTML file (the "shell")
-├── vite.config.js          ← Vite bundler config
-├── package.json            ← Dependencies & scripts
-├── babel.config.cjs        ← Babel config (for Jest)
-├── jest.config.cjs         ← Jest config
-│
+├── index.html              ← The one HTML file. Just a shell.
 ├── src/
-│   ├── main.js             ← App entry point — boots the router
-│   │
+│   ├── main.js             ← Where the app starts
 │   ├── modules/
-│   │   ├── router.js       ← Client-side SPA router
-│   │   └── api.js          ← All async API calls (fetch + error handling)
-│   │
-│   ├── pages/
-│   │   ├── Home.js         ← / route
-│   │   ├── About.js        ← /about route
-│   │   ├── Users.js        ← /users route
-│   │   ├── UserDetail.js   ← /users/:id route (dynamic)
-│   │   ├── Posts.js        ← /posts route
-│   │   └── NotFound.js     ← 404 fallback
-│   │
+│   │   ├── router.js       ← Handles page navigation
+│   │   └── api.js          ← All the fetch/API logic
+│   ├── pages/              ← Each page is its own file
 │   ├── utils/
-│   │   └── helpers.js      ← Pure utility functions (tested with Jest)
-│   │
+│   │   └── helpers.js      ← Small reusable functions
 │   └── styles/
-│       └── main.css        ← Global styles with CSS variables
-│
+│       └── main.css        ← All the styling
 └── tests/
-    └── helpers.test.js     ← Jest unit tests for helpers.js
-```
+    └── helpers.test.js     ← Unit tests for helper functions
 
----
 
-## 🚀 How to Run — Step by Step
-
-### Step 1 — Install Node.js
-Download from https://nodejs.org (use LTS version)
-
-### Step 2 — Install dependencies
-Open your terminal, navigate to this folder, and run:
-```bash
+How to Run It
+Make sure you have Node.js installed. Then open a terminal in this folder and run:
+bash# Install everything first
 npm install
-```
 
-### Step 3 — Start the development server
-```bash
+
+# Start the dev server
 npm run dev
-```
-Open http://localhost:3000 in your browser. Hot-reload is enabled — any change you save instantly updates the browser.
-
-### Step 4 — Run unit tests
-```bash
+Open http://localhost:3000 in your browser and you're good to go.
+bash# Run the tests
 npm test
-```
-You should see all tests pass with green checkmarks.
 
-### Step 5 — Build for production
-```bash
+
+# Build for production
 npm run build
-```
-This creates an optimised `dist/` folder ready to deploy. Vite will:
-- Bundle and minify all JS
-- Tree-shake unused code
-- Optimise CSS
-- Generate hashed filenames for caching
 
-### Step 6 — Preview the production build
-```bash
-npm run preview
-```
 
----
+Tech Used
 
-## 🧠 Key Concepts Explained
-
-### ES6 Modules
-Every file uses `import` / `export` instead of `<script>` tags.
-This keeps code organised and avoids name collisions.
-
-### Client-Side Routing
-The Router class intercepts link clicks, updates the URL with
-`history.pushState()`, and swaps only the content — no page reload.
-
-### Async/Await
-All data fetching uses `async/await` with:
-- `AbortController` for timeout
-- Retry with exponential backoff
-- `Promise.all` for parallel fetches
-- `try/catch/finally` for error handling
-
-### Unit Testing
-Helper functions are pure (no side effects), making them trivial to test.
-Run `npm test` to execute all tests in `tests/`.
-
-### Vite
-Replaces webpack. Near-instant dev server using native ES modules.
-`npm run build` produces an optimised production bundle.
+JavaScript (ES6+)
+Vite
+Jest
+JSONPlaceholder (free fake REST API for testing)
